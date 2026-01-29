@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>CarePoint Hospital</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      line-height: 1.5;
+      color: #222;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* Top bar */
+    .top-bar {
+      background: #0b5cad;
+      color: #fff;
+      font-size: 14px;
+    }
+
+    .top-bar-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 0;
+    }
+
+    /* Header & nav */
+    header {
+      border-bottom: 1px solid #eee;
+    }
+
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 15px 0;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #0b5cad;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      font-size: 15px;
+      font-weight: 500;
+      color: #333;
+    }
+
+    nav a:hover {
+      color: #0b5cad;
+    }
+
+    /* Hero section */
+    .hero {
+      background: linear-gradient(to right, #0b5cad, #2a86dd);
+      color: #fff;
+      padding: 60px 0;
+    }
+
+    .hero-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .hero-text {
+      flex: 1 1 300px;
+    }
+
+    .hero-text h1 {
+      font-size: 38px;
+      margin-bottom: 15px;
+    }
+
+    .hero-text p {
+      margin-bottom: 20px;
+      max-width: 450px;
+    }
+
+    .btn-primary {
+      display: inline-block;
+      padding: 12px 26px;
+      background: #fff;
+      color: #0b5cad;
+      border-radius: 4px;
+      font-weight: bold;
+      font-size: 15px;
+    }
+
+    .hero-banner {
+      flex: 1 1 260px;
+      background: #ffffff22;
+      border-radius: 8px;
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px dashed #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    /* Section headings */
+    section {
+      padding: 50px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-title h2 {
+      font-size: 28px;
+      margin-bottom: 8px;
+      color: #0b5cad;
+    }
+
+    .section-title p {
+      font-size: 14px;
+      color: #666;
+    }
+
+    /* Departments */
+    .departments-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .department-card {
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+      background: #fafafa;
+    }
+
+    .department-card h3 {
+      margin-bottom: 8px;
+      font-size: 18px;
+      color: #0b5cad;
+    }
+
+    .department-card p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Appointment section */
+    .appointment-wrapper {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .appointment-text {
+      flex: 1 1 260px;
+    }
+
+    .appointment-form {
+      flex: 1 1 320px;
+      padding: 20px;
+      border-radius: 6px;
+      border: 1px solid #eee;
+      background: #f9f9ff;
+    }
+
+    .form-row {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+
+    .form-group {
+      flex: 1 1 150px;
+      display: flex;
+      flex-direction: column;
+      font-size: 14px;
+    }
+
+    .form-group label {
+      margin-bottom: 4px;
+      font-weight: 600;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 8px 10px;
+      border-radius: 4px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+
+    .btn-submit {
+      padding: 10px 20px;
+      background: #0b5cad;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    /* Doctors section */
+    .doctors-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .doctor-card {
+      border-radius: 6px;
+      border: 1px solid #eee;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .doctor-image {
+      height: 160px;
+      background: #dde7ff;
+      border-radius: 4px;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      color: #2f3b59;
+    }
+
+    .doctor-card h3 {
+      margin-bottom: 4px;
+      font-size: 18px;
+      color: #0b5cad;
+    }
+
+    .doctor-card p {
+      font-size: 14px;
+      margin-bottom: 4px;
+      color: #555;
+    }
+
+    .doctor-socials {
+      margin-top: 8px;
+      font-size: 14px;
+      color: #0b5cad;
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .gallery-item {
+      background: #e7f0ff;
+      border-radius: 4px;
+      padding: 20px 10px;
+      text-align: center;
+      font-size: 14px;
+      color: #2f3b59;
+    }
+
+    /* Testimonials */
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .testimonial-card {
+      border-radius: 6px;
+      border: 1px solid #eee;
+      padding: 20px;
+      background: #fafafa;
+      font-size: 14px;
+    }
+
+    .testimonial-name {
+      margin-top: 10px;
+      font-weight: 600;
+      color: #0b5cad;
+    }
+
+    /* Blog section */
+    .blogs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .blog-item {
+      border-radius: 6px;
+      border: 1px solid #eee;
+      padding: 15px;
+      background: #fff;
+    }
+
+    .blog-meta {
+      font-size: 12px;
+      color: #777;
+      margin-bottom: 8px;
+    }
+
+    .blog-item h3 {
+      font-size: 17px;
+      margin-bottom: 8px;
+      color: #0b5cad;
+    }
+
+    .blog-item p {
+      font-size: 14px;
+      color: #555;
+    }
+
+    /* Footer */
+    footer {
+      background: #0b1630;
+      color: #d0d4e0;
+      padding-top: 40px;
+      margin-top: 40px;
+    }
+
+    .footer-top {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid #2b3550;
+    }
+
+    .footer-title {
+      font-size: 16px;
+      margin-bottom: 10px;
+      color: #fff;
+    }
+
+    .footer-about {
+      font-size: 14px;
+    }
+
+    .footer-links ul {
+      list-style: none;
+      font-size: 14px;
+    }
+
+    .footer-links li {
+      margin-bottom: 6px;
+    }
+
+    .footer-links a {
+      color: #d0d4e0;
+      font-size: 14px;
+    }
+
+    .footer-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .footer-thumb {
+      background: #2b3550;
+      height: 45px;
+      border-radius: 3px;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      font-size: 13px;
+      padding: 12px 0 18px;
+      color: #a1a7c0;
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .departments-grid,
+      .doctors-grid,
+      .gallery-grid,
+      .testimonials-grid,
+      .blogs-grid,
+      .footer-top {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .hero-inner {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .top-bar-inner,
+      .header-inner {
+        flex-direction: column;
+        gap: 8px;
+        text-align: center;
+      }
+
+      nav ul {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+
+      .departments-grid,
+      .doctors-grid,
+      .gallery-grid,
+      .testimonials-grid,
+      .blogs-grid,
+      .footer-top {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 35px 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top-bar">
+    <div class="container top-bar-inner">
+      <div>Emergency: +91 98765 43210</div>
+      <div>Working Hours: Mon – Sat, 8:00 AM – 8:00 PM</div>
+    </div>
+  </div>
+
+  <!-- Header -->
+  <header>
+    <div class="container header-inner">
+      <div class="logo">CarePoint Hospital</div>
+      <nav>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#departments">Departments</a></li>
+          <li><a href="#doctors">Doctors</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#gallery">Gallery</a></li>
+          <li><a href="#blog">Blog</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero" id="hero">
+    <div class="container hero-inner">
+      <div class="hero-text">
+        <h1>Compassionate Care, Every Single Day</h1>
+        <p>
+          CarePoint Hospital brings together experienced specialists, modern diagnostics, 
+          and a calm healing environment to support you and your family.
+        </p>
+        <a href="#appointment" class="btn-primary">Make an Appointment</a>
+      </div>
+      <div class="hero-banner">
+        <div>
+          <h3>Static Banner Placeholder</h3>
+          <p>Replace this area with a simple hero image or illustration box as required.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Departments -->
+  <section id="departments">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Departments</h2>
+        <p>Specialized units designed to cover your everyday health needs and critical care.</p>
+      </div>
+      <div class="departments-grid">
+        <article class="department-card">
+          <h3>Quick Examination</h3>
+          <p>Walk-in assessment for common symptoms, minor injuries, and routine checks.</p>
+        </article>
+        <article class="department-card">
+          <h3>Child Care Unit</h3>
+          <p>Dedicated pediatric team focused on gentle, age-appropriate treatment.</p>
+        </article>
+        <article class="department-card">
+          <h3>Dental Unit</h3>
+          <p>Complete oral care from preventive cleaning to advanced dental procedures.</p>
+        </article>
+        <article class="department-card">
+          <h3>Eye Care Center</h3>
+          <p>Comprehensive eye exams, vision correction, and minor ophthalmic surgeries.</p>
+        </article>
+        <article class="department-card">
+          <h3>Cardiology</h3>
+          <p>Heart health evaluation, monitoring, and personalized treatment plans.</p>
+        </article>
+        <article class="department-card">
+          <h3>Orthopedics</h3>
+          <p>Bone, joint, and sports injury management for all age groups.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Appointment form -->
+  <section id="appointment">
+    <div class="container appointment-wrapper">
+      <div class="appointment-text" id="about">
+        <div class="section-title" style="text-align:left; margin-bottom:15px;">
+          <h2>Make an Appointment</h2>
+          <p>Plan your visit in advance so our team can prepare everything for you.</p>
+        </div>
+        <p style="font-size:14px; color:#555; margin-bottom:10px;">
+          Share your details, select a department and preferred doctor, and we will confirm 
+          your appointment by call or email as soon as possible.
+        </p>
+        <p style="font-size:14px; color:#555;">
+          For urgent or emergency conditions, kindly contact our 24x7 emergency number directly 
+          instead of using this form.
+        </p>
+      </div>
+      <form class="appointment-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Full Name</label>
+            <input id="name" type="text" placeholder="Enter your name">
+          </div>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input id="email" type="email" placeholder="name@example.com">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Phone</label>
+            <input id="phone" type="tel" placeholder="+91 XXXXX XXXXX">
+          </div>
+          <div class="form-group">
+            <label for="date">Preferred Date</label>
+            <input id="date" type="date">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="department-select">Department</label>
+            <select id="department-select">
+              <option value="">Select department</option>
+              <option>Quick Examination</option>
+              <option>Child Care Unit</option>
+              <option>Dental Unit</option>
+              <option>Eye Care Center</option>
+              <option>Cardiology</option>
+              <option>Orthopedics</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="doctor-select">Doctor</label>
+            <select id="doctor-select">
+              <option value="">Select doctor</option>
+              <option>Dr. Meera Shah</option>
+              <option>Dr. Arjun Menon</option>
+              <option>Dr. Kavya Reddy</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-bottom:15px;">
+          <label for="notes">Short Note (optional)</label>
+          <textarea id="notes" rows="3" placeholder="Briefly describe your concern"></textarea>
+        </div>
+        <button type="submit" class="btn-submit">Submit Request</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- Doctors -->
+  <section id="doctors">
+    <div class="container">
+      <div class="section-title">
+        <h2>Our Doctors</h2>
+        <p>Experienced specialists working together to provide coordinated, safe care.</p>
+      </div>
+      <div class="doctors-grid">
+        <article class="doctor-card">
+          <div class="doctor-image">Doctor Image 1</div>
+          <h3>Dr. Meera Shah</h3>
+          <p>Senior Consultant, Cardiology</p>
+          <p>Phone: +91 90000 11111</p>
+          <div class="doctor-socials">
+            [FB] [IN] [TW]
+          </div>
+        </article>
+        <article class="doctor-card">
+          <div class="doctor-image">Doctor Image 2</div>
+          <h3>Dr. Arjun Menon</h3>
+          <p>Consultant, Orthopedics & Sports Medicine</p>
+          <p>Phone: +91 90000 22222</p>
+          <div class="doctor-socials">
+            [FB] [IN] [TW]
+          </div>
+        </article>
+        <article class="doctor-card">
+          <div class="doctor-image">Doctor Image 3</div>
+          <h3>Dr. Kavya Reddy</h3>
+          <p>Consultant, Pediatrics & Child Health</p>
+          <p>Phone: +91 90000 33333</p>
+          <div class="doctor-socials">
+            [FB] [IN] [TW]
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Gallery -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-title">
+        <h2>Hospital Gallery</h2>
+        <p>Placeholder images to showcase wards, diagnostics, and common areas.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item">Image 1 – Reception</div>
+        <div class="gallery-item">Image 2 – Patient Room</div>
+        <div class="gallery-item">Image 3 – Operation Theatre</div>
+        <div class="gallery-item">Image 4 – Diagnostics Lab</div>
+        <div class="gallery-item">Image 5 – Waiting Area</div>
+        <div class="gallery-item">Image 6 – Pharmacy</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section id="testimonials">
+    <div class="container">
+      <div class="section-title">
+        <h2>Patient Stories</h2>
+        <p>Short feedback snippets from patients and their families.</p>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card">
+          <p>
+            “The nursing staff was patient and attentive. I always felt that my concerns were 
+            heard and explained clearly.”
+          </p>
+          <div class="testimonial-name">Anita, Chennai</div>
+        </div>
+        <div class="testimonial-card">
+          <p>
+            “From admission to discharge, the process was smooth and organized. The doctors 
+            answered every question without rushing.”
+          </p>
+          <div class="testimonial-name">Rahul, Madurai</div>
+        </div>
+        <div class="testimonial-card">
+          <p>
+            “Clean rooms, courteous staff, and timely updates about test results made the 
+            experience much less stressful.”
+          </p>
+          <div class="testimonial-name">Suresh, Trichy</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Recent Blogs -->
+  <section id="blog">
+    <div class="container">
+      <div class="section-title">
+        <h2>Recent Health Articles</h2>
+        <p>Helpful reading to stay informed about common health topics.</p>
+      </div>
+      <div class="blogs-grid">
+        <article class="blog-item">
+          <div class="blog-meta">Jan 10, 2026 · General Health</div>
+          <h3>Simple Habits for a Stronger Heart</h3>
+          <p>
+            Learn how small daily choices like walking, mindful eating, and regular checkups 
+            can protect your heart over time.
+          </p>
+        </article>
+        <article class="blog-item">
+          <div class="blog-meta">Jan 18, 2026 · Child Care</div>
+          <h3>Keeping Children Healthy During School Season</h3>
+          <p>
+            Practical tips to build immunity, manage screen time, and spot early signs of 
+            infection in children.
+          </p>
+        </article>
+        <article class="blog-item">
+          <div class="blog-meta">Jan 25, 2026 · Eye Care</div>
+          <h3>Reduce Eye Strain in a Digital World</h3>
+          <p>
+            Understand the 20–20–20 rule, proper lighting, and posture for comfortable 
+            screen use at work and home.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container footer-top">
+      <div>
+        <div class="footer-title">About CarePoint</div>
+        <p class="footer-about">
+          CarePoint Hospital is a multi-specialty facility focused on making quality healthcare 
+          accessible, transparent, and respectful for every patient who walks through our doors.
+        </p>
+      </div>
+      <div class="footer-links">
+        <div class="footer-title">Quick Links</div>
+        <ul>
+          <li><a href="#hero">Home</a></li>
+          <li><a href="#departments">Departments</a></li>
+          <li><a href="#doctors">Doctors</a></li>
+          <li><a href="#appointment">Appointment</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <div class="footer-title">Support</div>
+        <ul>
+          <li><a href="#">Contact Us</a></li>
+          <li><a href="#">Patient Guide</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Terms & Conditions</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-title">Mini Gallery</div>
+        <div class="footer-gallery">
+          <div class="footer-thumb">Img 1</div>
+          <div class="footer-thumb">Img 2</div>
+          <div class="footer-thumb">Img 3</div>
+          <div class="footer-thumb">Img 4</div>
+          <div class="footer-thumb">Img 5</div>
+          <div class="footer-thumb">Img 6</div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © 2026 CarePoint Hospital. All rights reserved.
+    </div>
+  </footer>
+
+</body>
+</html>
